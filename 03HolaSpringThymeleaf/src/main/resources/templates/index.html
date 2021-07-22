@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<!-- Se añade el namespace para el uso de thymeleaf en la página. -->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>HolaMundoSpring</title>
+        <!-- Es importante dejar este meta en una página gestionada con Thymeleaf. -->
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1>HolaMundoSpring</h1>
+        <!-- La propiedad "text" de thymeleaf no procesa bien los espacios en blanco
+        si se escribe directamente texto como valor, pero si se
+        reciben como contenido de una variable del modelo, no hay problema.
+        Si se incluye algún contenido en el tag HTML, éste será sustituido por el 
+        contenido de la propiedad "text·. -->
+        <p th:text="Holaquetal"></p>
+    </body>
+</html>

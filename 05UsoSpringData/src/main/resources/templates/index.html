@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- Se añade el namespace para el uso de thymeleaf en la página. -->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>HolaMundoSpring</title>
+        <!-- Es importante dejar este meta en una página gestionada con Thymeleaf. -->
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1>HolaMundoSpring</h1>
+        <!-- La propiedad "text" de thymeleaf no procesa bien los espacios en blanco
+        si se escribe directamente texto como valor, pero si se
+        reciben como contenido de una variable del modelo, no hay problema.
+        Si se incluye algún contenido en el tag HTML, éste será sustituido por el 
+        contenido de la propiedad "text·. -->
+        <p th:text="${mensaje}"></p>
+        <p th:text="${mensajeProp}"></p>
+        <br/>
+        Nombre: <span th:text="${persona.nombre}"></span>
+        <br/>
+        Apellido <span th:text="${persona.apellido}"></span>
+        <br/>
+        Email: <span th:text="${persona.email}"></span>
+        <br/>
+        Telefono: <span th:text="${persona.telefono}"></span>
+        <br/>
+        <br/>
+        <!-- Uso de propiedad "if" de thymeleaf para realizar una comprobación.
+                    En este caso, si un atributo recibido está vacío o es nulo. -->
+        <div th:if="${personas != null && !personas.empty}">
+            <table border="1">
+                <caption>Lista de personas</caption>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Telefono</th>
+                </tr>
+
+                <!-- Iteración de elementos mediante la propiedad "each" de thymeleaf,
+                que funciona de manera muy similar al "forEach" de JSTL. -->
+                <tr th:each="persona: ${personas}">
+                    <td th:text="${persona.nombre}"></td>
+                    <td th:text="${persona.apellido}"></td>
+                    <td th:text="${persona.email}"></td>
+                    <td th:text="${persona.telefono}"></td>
+                </tr>
+
+            </table>
+        </div>
+        <div th:if="${personas == null || personas.empty}">
+            <p>La lista de personas está vacía</p>
+        </div>
+    </body>
+</html>
