@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>es.local.personal</groupId>
-    <artifactId>UsoSpringData</artifactId>
+    <artifactId>CapaServicioSpring</artifactId>
     <version>1.0</version>
-    <name>UsoSpringData</name>
+    <name>CapaServicioSpring</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>16</java.version>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Plantilla</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <!-- Para crear contenido reutilizable en otras páginas, se debe envolver
+        en una etiqueta html que contenga el atributo "fragment" de Thymeleaf, e
+        indicar un nombre para dicho fragmento. -->
+        <header th:fragment="cabecera">
+            <h1>Control de clientes</h1>
+        </header>
+        
+        <footer th:fragment="pie">
+            <br/>
+            <p>Práctica curso Spring de <a href="http://www.globalmentoring.com.mx">Universidad Java</a></p>
+        </footer>
+    </body>
+</html>

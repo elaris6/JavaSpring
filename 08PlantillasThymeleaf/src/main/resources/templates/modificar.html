@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Persona</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <!-- Para cargar un elemento de plantilla html reutilizable en thymeleaf, se
+        debe crear una etiqueta del mismo tipo que la de la plantilla y mediante el
+        atributo "replace" e indicando la ruta de la plantilla (sin extensión) y el
+        nombre del elemento, se reemplazará el contenido. -->
+        <header th:replace="layout/plantilla :: cabecera"/>
+        <h2>Datos Persona</h2>
+        <br/>
+        <!-- Al crear un formulario con thymeleaf se debe indicar el path del
+        action con la sintaxis de thymeleaf y se puede informar un objeto compartido
+        sobrbe el que se guardarán los datos del formulario de forma automática.
+        Este objeto ("persona"), viene compartido en el alcance de "request" desde el
+        el componente controlador de forma automática por Spring, al definirlo como
+        parámetro del método. -->
+        <form th:action="@{/guardar}" method="post" th:object="${persona}">
+
+            <!-- Para asociar cada campo a un aributo del objeto compartido se usa la
+            sintaxis "*{nom_atributo}", que automáticamente realizará la asociación. -->
+            <input type="hidden" name="idPersona" th:field="*{idPersona}"/>
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" th:field="*{nombre}"/>
+            <!-- Para gestionar los errores con thymeleaf, se usa la siguiente sintaxis,
+            que revisa si el campo indicado tiene errores y en caso de tenerlos, se muestran
+            los errores asociados a dicho campo. -->
+            <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+            <br/>
+            <label for="apellido">Apellido:</label>
+            <input type="text" name="apellido" th:field="*{apellido}"/>
+            <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></span>
+            <br/>
+            <label for="email">Email:</label>
+            <input type="text" name="email" th:field="*{email}"/>
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            <br/>
+            <label for="telefono">Tel&eacute;fono:</label>
+            <input type="tel" name="telefono" th:field="*{telefono}"/>
+            <br/>
+            <br/>
+            <input type="submit" name="guardar" value="Guardar"/>
+            <br/>
+            <br/>
+            <a th:href="@{/}">Volver</a>
+            <footer th:replace="layout/plantilla :: pie"/>
+        </form>
+    </body>
+</html>

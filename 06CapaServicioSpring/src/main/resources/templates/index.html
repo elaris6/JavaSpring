@@ -1,32 +1,44 @@
 <!DOCTYPE html>
 <!-- Se añade el namespace para el uso de thymeleaf en la página. -->
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>TestSpringData</title>
         <!-- Es importante dejar este meta en una página gestionada con Thymeleaf. -->
-        <meta charset="UTF-8">
+        <meta charset="UTF-8"/>
     </head>
     <body>
         <h1>Test SpringData</h1>
+        <br/>
+        <!-- Uso de propiedad "href" de thymeleaf, para insertar un enlace. Se dirige
+        a un path mediante la sintaxis "@{path}" -->
+        <a th:href="@{/insertar}">Añadir Persona</a>
+        <br/>
         <!-- Uso de propiedad "if" de thymeleaf para realizar una comprobación.
                     En este caso, si un atributo recibido está vacío o es nulo. -->
         <div th:if="${personas != null && !personas.empty}">
             <table border="1">
                 <caption>Lista de personas</caption>
                 <tr>
+                    <th>Id Persona</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Email</th>
                     <th>Telefono</th>
+                    <th colspan="2">Edici&oacute;n</th>
                 </tr>
 
                 <!-- Iteración de elementos mediante la propiedad "each" de thymeleaf,
                 que funciona de manera muy similar al "forEach" de JSTL. -->
                 <tr th:each="persona: ${personas}">
+                    <td th:text="${persona.idPersona}"></td>
                     <td th:text="${persona.nombre}"></td>
                     <td th:text="${persona.apellido}"></td>
                     <td th:text="${persona.email}"></td>
                     <td th:text="${persona.telefono}"></td>
+                    <!-- Se pasa el idPersona como parámetro en el path. -->
+                    <td><a th:href="@{/editar/} + ${persona.idPersona}">Editar</a></td>
+                    <!-- Se pasa el idPersona como parámetro en la url. -->
+                    <td><a th:href="@{/eliminar(idPersona=${persona.idPersona})}">Eliminar</a></td>
                 </tr>
 
             </table>
