@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Listado Clientes</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <section th:fragment="listadoClientes">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{persona.listaTitulo}]]</h4>
+                            </div>
+                            <div th:if="${personas != null && !personas.empty}">
+                                <table class="table table-striped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th th:text="#{persona.idPersona}"></th>
+                                            <th th:text="#{persona.nombre}"></th>
+                                            <th th:text="#{persona.apellido}"></th>
+                                            <th th:text="#{persona.email}"></th>
+                                            <th th:text="#{persona.telefono}"></th>
+                                            <th th:text="#{persona.saldo}"></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

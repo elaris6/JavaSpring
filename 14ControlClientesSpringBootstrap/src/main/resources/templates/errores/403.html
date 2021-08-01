@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/plantilla :: head">
+        <title>Acceso denegado</title>
+    </head>
+    <body>
+        <h1>Error</h1>
+        <p>Acceso denegado. Sin permiso para visualizar la página o ejecutar la acción.</p>
+        <a th:href="@{/}">[[#{form.volver}]]</a>
+    </body>
+</html>
