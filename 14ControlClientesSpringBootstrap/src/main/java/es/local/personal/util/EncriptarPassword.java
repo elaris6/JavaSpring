@@ -12,7 +12,7 @@ public class EncriptarPassword {
 
     public static void main(String[] args) {
         
-        var password = "user123";
+        var password = "123";
         
         System.out.println("Password: " + password);
         System.out.println("Password encriptado: " + encriptarPassword(password));

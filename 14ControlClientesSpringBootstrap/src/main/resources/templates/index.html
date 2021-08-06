@@ -20,44 +20,5 @@
 
         <footer th:replace="layout/plantilla :: pie"/>
 
-        <!-- Uso de propiedad "href" de thymeleaf, para insertar un enlace. Se dirige
-        a un path mediante la sintaxis "@{path}" -->
-        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/insertar}">[[#{persona.crear}]]</a>
-        <!-- Uso de propiedad "if" de thymeleaf para realizar una comprobación.
-                    En este caso, si un atributo recibido está vacío o es nulo. -->
-        <div th:if="${personas != null && !personas.empty}">
-            <table border="1">
-                <caption th:text="#{persona.listaTitulo}"></caption>
-                <tr>
-                    <th th:text="#{persona.idPersona}"></th>
-                    <th th:text="#{persona.nombre}"></th>
-                    <th th:text="#{persona.apellido}"></th>
-                    <th th:text="#{persona.email}"></th>
-                    <th th:text="#{persona.telefono}"></th>
-                    <th th:text="#{persona.saldo}"></th>
-                    <th sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{persona.opciones}" colspan="2"></th>
-                </tr>
-
-                <!-- Iteración de elementos mediante la propiedad "each" de thymeleaf,
-                que funciona de manera muy similar al "forEach" de JSTL. -->
-                <tr th:each="persona: ${personas}">
-                    <td th:text="${persona.idPersona}"></td>
-                    <td th:text="${persona.nombre}"></td>
-                    <td th:text="${persona.apellido}"></td>
-                    <td th:text="${persona.email}"></td>
-                    <td th:text="${persona.telefono}"></td>
-                    <td th:text="${persona.saldo}"></td>
-                    <!-- Se pasa el idPersona como parámetro en el path. -->
-                    <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/editar/} + ${persona.idPersona}">[[#{persona.editar}]]</a></td>
-                    <!-- Se pasa el idPersona como parámetro en la url. -->
-                    <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/eliminar(idPersona=${persona.idPersona})}">[[#{persona.eliminar}]]</a></td>
-                </tr>
-
-            </table>
-        </div>
-        <div th:if="${personas == null || personas.empty}">
-            <p th:text="#{error.persona.lista.vacia}"></p>
-        </div>
-
     </body>
 </html>

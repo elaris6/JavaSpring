@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Editar Cliente</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <section th:fragment="editarCliente">
+
+            <!-- Al crear un formulario con thymeleaf se debe indicar el path del
+        action con la sintaxis de thymeleaf y se puede informar un objeto compartido
+        sobrbe el que se guardarán los datos del formulario de forma automática.
+        Este objeto ("persona"), viene compartido en el alcance de "request" desde el
+        el componente controlador de forma automática por Spring, al definirlo como
+        parámetro del método. -->
+            <form th:action="@{/guardar}" th:object="${persona}" method="POST" class="was-validated">
+                <!-- Para asociar cada campo a un aributo del objeto compartido se usa la
+                sintaxis "*{nom_atributo}", que automáticamente realizará la asociación. -->
+                <input type="hidden" name="idPersona" th:field="*{idPersona}" />
+
+                <!-- Se agrega una sección para incluir los botones de edición, que deberán estar
+                dentro del formulario, ya que el botón de guardar los cambios hará un submit del
+                formulario. -->
+                <section th:replace="layout/botonesEditar :: botonesEditar"></section>
+
+                <div id="details">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="modal-title" th:text="#{persona.editar}"></h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="nombre" th:text="#{persona.nombre}"></label>
+                                            <!-- Para asociar cada campo a un aributo del objeto compartido se usa la
+                                            sintaxis "*{nom_atributo}", que automáticamente realizará la asociación. -->
+                                            <input type="text" class="form-control" name="nombre" th:field="*{nombre}" required="true"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="apellido" th:text="#{persona.apellido}"></label>
+                                            <input type="text" class="form-control" name="apellido" th:field="*{apellido}" required="true"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email" th:text="#{persona.email}"></label>
+                                            <input type="email" class="form-control" name="email" th:field="*{email}" required="true"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="telefono" th:text="#{persona.telefono}"></label>
+                                            <input type="tel" class="form-control" name="telefono" th:field="*{telefono}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="saldo" th:text="#{persona.saldo}"></label>
+                                            <input type="number" class="form-control" name="saldo" th:field="*{saldo}" required="true" step="any"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </body>
+</html>
