@@ -41,5 +41,5 @@ public interface UsuarioDAO extends JpaRepository<Usuario, Integer>{
     @Transactional
     @Modifying
     @Query("DELETE FROM Usuario u WHERE u.password = ?1%")
-    public void eliminarPorPassword(String password)
+    public void eliminarPorPassword(String password);
 }
